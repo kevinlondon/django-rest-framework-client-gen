@@ -1,0 +1,4 @@
+site_name: djangorestframework-client-gen
+site_description: Automatically generate Python client SDK skeleton using your existing Django Rest Framework logic.
+repo_url: https://github.com/kevinlondon/django-rest-framework-client-gen
+site_dir: html
