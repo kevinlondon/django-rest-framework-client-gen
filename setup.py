@@ -6,8 +6,8 @@ import sys
 from setuptools import setup
 
 
-name = 'djangorestframework-client-gen'
-package = 'rest_framework_client_gen'
+name = 'drf-client-generator'
+package = 'drf_client_generator'
 description = 'Automatically generate Python client SDK skeleton using your existing Django Rest Framework logic.'
 url = 'https://github.com/kevinlondon/django-rest-framework-client-gen'
 author = 'Kevin London'

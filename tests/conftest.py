@@ -64,21 +64,6 @@ def pytest_configure():
             'provider.oauth2',
         )
 
-    # guardian is optional
-    try:
-        import guardian  # NOQA
-    except ImportError:
-        pass
-    else:
-        settings.ANONYMOUS_USER_ID = -1
-        settings.AUTHENTICATION_BACKENDS = (
-            'django.contrib.auth.backends.ModelBackend',
-            'guardian.backends.ObjectPermissionBackend',
-        )
-        settings.INSTALLED_APPS += (
-            'guardian',
-        )
-
     try:
         import django
         django.setup()

@@ -23,6 +23,27 @@ $ pip install djangorestframework-client-gen
 
 ## Example
 
+To get started making your own SDK, you can do one of two things.
+
+```
+$ ./manage.py generatesdk
+```
+
+Follow the prompts.
+
+## Tutorial
+
+If you want to try the tutorial, which is based upon the DRF tutorial
+(https://github.com/tomchristie/rest-framework-tutorial), do the following:
+
+```
+$ git clone https://github.com/tomchristie/rest-framework-tutorial.git
+$ cd rest-framework-tutorial
+$ 
+```
+
+Add 
+
 TODO: Write example.
 
 ## Testing
