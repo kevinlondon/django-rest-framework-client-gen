@@ -18,33 +18,49 @@ Automatically generate Python client SDK skeleton using your existing Django Res
 Install using `pip`...
 
 ```bash
-$ pip install djangorestframework-client-gen
+$ pip install drf-client-generator
 ```
 
 ## Example
 
 To get started making your own SDK, you can do one of two things.
 
-```
-$ ./manage.py generatesdk
-```
+You can try the quickstart (below) or run it against your own code. Your
+choice!
 
-Follow the prompts.
+## Quickstart
 
-## Tutorial
-
-If you want to try the tutorial, which is based upon the DRF tutorial
-(https://github.com/tomchristie/rest-framework-tutorial), do the following:
+If you want to try the quickstart, which is based upon the DRF quickstart
+(http://www.django-rest-framework.org/tutorial/quickstart/), do the following:
 
 ```
 $ git clone https://github.com/tomchristie/rest-framework-tutorial.git
-$ cd rest-framework-tutorial
-$ 
+$ cd rest-framework-quickstart
+$ pip install -r requirements.txt
+$ python manage.py makesdk
 ```
 
-Add 
+...and follow the prompts. Once it's done, you should have a new folder 
+with everything you'd need for the client SDK.
 
-TODO: Write example.
+## Using it in your own SDK
+
+First, be sure to install the library first (as above). Then, in your
+`settings.py` file, add `drf_client_generator` to your installed apps, like so:
+
+```
+INSTALLED_APPS = (
+    . . .
+    'drf_client_generator',
+)
+```
+
+Then, as above, to create the SDK:
+
+`$ ./manage.py makesdk`
+
+.. and follow the prompts.
+
 
 ## Testing
 
