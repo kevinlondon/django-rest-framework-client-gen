@@ -18,9 +18,9 @@ def get_resource_template():
     return env.get_template("resources.py")
 
 
-def make_resources(url_registry, repo_path):
+def make_resources(router, repo_path):
     template = get_resource_template()
-    for path, viewset, basename in url_registry:
+    for path, viewset, basename in router.registry:
         serializer = viewset.serializer_class
         fpath = os.path.join(repo_path, "{path}.py".format(path=path))
         with open(fpath, 'w') as fobj:
@@ -44,5 +44,5 @@ class Command(BaseCommand):
         cookiecutter(url, no_input=True, extra_context={"repo_name": package_name})
         repo_path = os.path.join(os.getcwd(), package_name, package_name)
         urls = import_module(settings.ROOT_URLCONF)
-        make_resources(urls.router.registry, repo_path)
+        make_resources(router=urls.router, repo_path=repo_path)
         return "Made you an SDK!"

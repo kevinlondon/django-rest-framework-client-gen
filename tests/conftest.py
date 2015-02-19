@@ -33,6 +33,7 @@ def pytest_configure():
             'rest_framework',
             'rest_framework.authtoken',
             'tests',
+            'tests.sampleapp',
         ),
         PASSWORD_HASHERS=(
             'django.contrib.auth.hashers.SHA1PasswordHasher',

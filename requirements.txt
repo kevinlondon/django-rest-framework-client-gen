@@ -1,6 +1,10 @@
 # Minimum Django and REST framework version
 Django>=1.6
 djangorestframework>=2.4.3
+djangorestclient
+
+# Template generation
+cookiecutter>=0.9.1
 
 # Test requirements
 pytest-django==2.6
