@@ -1,15 +1,13 @@
+from mock import patch
 from drf_client import resources
-from .fixtures import foos
+from .fixtures import test_resources  # noqa
 
 
-class TestResources:
+class TestTemplateGeneratedResources:
 
-    def test_created_resource_file_contains_fields(self, foos):
-        declared_fields = foos.FooModel._declared_fields
+    def test_created_resource_file_contains_fields(self, test_resources):
+        declared_fields = test_resources.FooModel._declared_fields
         expected_fields = "email", "content", "created"
         for fieldname, fieldtype in declared_fields.iteritems():
             assert fieldname in expected_fields
             assert isinstance(fieldtype, resources.Field)
-
-    def test_get_uses_the_correct_class(self):
-        pass
