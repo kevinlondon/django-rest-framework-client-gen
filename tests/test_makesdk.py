@@ -12,8 +12,8 @@ class TestMakeResourceFile:
     def test_make_resources_generates_a_file_per_viewset(self):
         with make_temp_directory() as temp_dir:
             makesdk.make_resources(router=router, repo_path=temp_dir)
-            expected_path = os.path.join(temp_dir, "test_resources.py")
-            assert os.path.exists(expected_path)
+            expected_path = os.path.join(temp_dir, "test_resources")
+            assert os.path.isdir(expected_path)
 
         assert not os.path.exists(expected_path)
 

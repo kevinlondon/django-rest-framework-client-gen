@@ -1,7 +1,6 @@
 import pytest
 import sys
 from drf_client_generator.management.commands import makesdk
-from sampleapp.models import FooViewSet
 from sampleapp.urls import router
 from .helpers import make_temp_directory
 

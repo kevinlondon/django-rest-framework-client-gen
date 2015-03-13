@@ -1,5 +1,5 @@
 from mock import patch
-from drf_client import resources
+from drf_client import resources, api
 from .fixtures import test_resources  # noqa
 
 
@@ -11,3 +11,13 @@ class TestTemplateGeneratedResources:
         for fieldname, fieldtype in declared_fields.iteritems():
             assert fieldname in expected_fields
             assert isinstance(fieldtype, resources.Field)
+
+    @patch.object(api, "get")
+    def test_request_provides_the_cls_on_call(self, get_mock, test_resources):
+        test_resources.get()
+        get_mock.assert_called_with(cls=test_resources.FooModel)
+
+    @patch.object(api, "create")
+    def test_create_provides_the_cls_on_call(self, create_mock, test_resources):
+        test_resources.create()
+        create_mock.assert_called_with(cls=test_resources.FooModel)
