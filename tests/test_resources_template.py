@@ -1,6 +1,15 @@
 from mock import patch
+import pytest
 from drf_client import resources, api
-from .fixtures import test_resources  # noqa
+from sampleapp.urls import router
+from .helpers import make_sdk
+
+
+@pytest.fixture
+def test_resources(scope="class"):
+    with make_sdk(router=router):
+        import test_resources
+        return test_resources
 
 
 class TestTemplateGeneratedResources:

@@ -1,4 +1,4 @@
-# djangorestframework-client-gen
+# Django Rest Framework Client SDK Generator
 
 [![build-status-image]][travis]
 [![pypi-version]][pypi]
