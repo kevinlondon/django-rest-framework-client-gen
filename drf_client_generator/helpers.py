@@ -3,6 +3,8 @@ from jinja2 import Environment, PackageLoader
 from cookiecutter.main import cookiecutter
 from cookiecutter.prompt import prompt_for_config
 
+PARENT_FOLDER = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+COOKIECUTTERS = os.path.join(PARENT_FOLDER, "cookiecutters")
 
 def prep_environment():
     return Environment(
@@ -31,7 +33,7 @@ def make_resources(router, repo_path):
     os.chdir(repo_path)
     for route, viewset, basename in router.registry:
         context = make_context(route, viewset, basename)
-        url = "gh:kevinlondon/cookiecutter-drf-client-resource"
+        url = os.path.join(COOKIECUTTERS, "resource")
         cookiecutter(url, no_input=True, extra_context=context)
 
     update_resources(router, repo_path)
@@ -63,7 +65,7 @@ def make_api_file(context, repo_path):
 
 
 def make_sdk(package_name):
-    url = "gh:kevinlondon/cookiecutter-drf-client"
+    url = os.path.join(COOKIECUTTERS, "sdk")
     cookiecutter(url, no_input=True, extra_context={"repo_name": package_name})
 
 
