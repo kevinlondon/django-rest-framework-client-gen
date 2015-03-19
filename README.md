@@ -34,7 +34,7 @@ If you want to try the quickstart, which is based upon the DRF quickstart
 (http://www.django-rest-framework.org/tutorial/quickstart/), do the following:
 
 ```
-$ git clone https://github.com/tomchristie/rest-framework-tutorial.git
+$ git clone https://github.com/kevinlondon/django-rest-framework-quickstart.git
 $ cd rest-framework-quickstart
 $ pip install -r requirements.txt
 $ python manage.py makesdk
