@@ -1,0 +1,11 @@
+{
+	"full_name": "Kevin London",
+	"email": "kevinlondon@gmail.com",
+	"github_username": "kevinlondon",
+	"project_name": "My Cool Django Rest Framework client SDK",
+	"repo_name": "boilerplate_client_sdk",
+	"project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
+	"release_date": "2015-02-10",
+	"year": "2015",
+	"version": "0.1.0"
+}
