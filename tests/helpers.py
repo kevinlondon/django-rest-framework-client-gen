@@ -1,3 +1,4 @@
+import os
 import contextlib
 import tempfile
 import shutil
@@ -11,7 +12,7 @@ def make_sdk(router):
     temp_dir = tempfile.mkdtemp()
     sdk = ClientSDK(name="foo")
     sdk.path = temp_dir
-    sdk.make_resources(router=router)
+    sdk._make_resources(router)
     sys.path.append(temp_dir)
     yield temp_dir
     shutil.rmtree(temp_dir)

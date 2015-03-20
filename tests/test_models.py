@@ -1,19 +1,27 @@
 import os
+from mock import Mock
 import pytest
-from sampleapp.urls import router
-from .helpers import make_sdk
+from rest_framework.routers import SimpleRouter
+from drf_client_generator.models import ClientSDK
 
 
-class TestMakeResourceFile:
+@pytest.fixture
+def sdk():
+    return ClientSDK(name="foo")
 
-    def test_folder_exists_for_resource(self):
-        with make_sdk(router=router) as sdk_dir:
-            expected_path = os.path.join(sdk_dir, "test_resources")
-            assert os.path.isdir(expected_path)
 
-    def test_created_resource_file_is_importable(self):
-        with make_sdk(router=router):
-            try:
-                from test_resources import FooModel
-            except ImportError:
-                pytest.fail("Could not import generated model.")
+class TestSDK:
+
+    def test_path_set_to_current_path_plus_name(self, sdk):
+        assert sdk.path == os.path.join(os.getcwd(), sdk.name, sdk.name)
+
+    def test_routers_dynamically_pulled_from_url_module(self, sdk):
+        foo_router = SimpleRouter()
+        baz_router = SimpleRouter()
+        sdk._urls = Mock(foo_router=foo_router, baz_router=baz_router)
+        assert foo_router in sdk.routers
+        assert baz_router in sdk.routers
+
+    def test_router_parsing_ignores_other_things(self, sdk):
+        sdk._urls = Mock(thing=object(), thing2=object())
+        assert not sdk.routers

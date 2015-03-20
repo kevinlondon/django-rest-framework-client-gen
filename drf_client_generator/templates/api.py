@@ -1,5 +1,5 @@
 from drf_client import api
-from {{ route_name }}.resources import {{ resource_class }}
+from ..resources import {{ resource_class }}
 
 
 def create(*args, **kwargs):
