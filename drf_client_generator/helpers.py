@@ -13,9 +13,7 @@ def prep_environment():
 
 def prompt_for_name():
     package_key = "Client SDK Name"
-    ctx = prompt_for_config(context={
-        "cookiecutter": {package_key: "boilerplate_sdk"}
-    })
+    ctx = prompt_for_config(context={"cookiecutter": {package_key: "drf_sdk"}})
     return ctx[package_key]
 
 

@@ -1,0 +1,5 @@
+HOST: {{ cookiecutter.api_host }}
+USE_HTTPS: {{ cookiecutter.use_https }}
+VERIFY_SSL: {{ cookiecutter.verify_ssl }}
+MAX_PAGINATION: 500
+RESPONSE_PARSER: 'drf_client.utils.ResponseParser'

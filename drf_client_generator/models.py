@@ -20,6 +20,7 @@ class ClientSDK(object):
         self.path = os.path.join(USER_PATH, name, name)
         self._urls = None
         self._routers = []
+        self._collections = []
 
     @property
     def routers(self):
@@ -43,6 +44,8 @@ class ClientSDK(object):
         for router in self.routers:
             self._make_resources(router)
 
+        self._make_readme()
+
     def update(self):
         for router in self.routers:
             self._update_resources(router)
@@ -51,6 +54,7 @@ class ClientSDK(object):
         for entry in router.registry:
             resource = Resource(router_entry=entry, sdk_path=self.path)
             resource.make()
+            self._collections.append(resource.collection)
 
     def _update_resources(self, router):
         for entry in router.registry:
@@ -59,8 +63,29 @@ class ClientSDK(object):
 
     def _make_skeleton(self):
         template = os.path.join(COOKIECUTTERS, "sdk")
-        context = {"repo_name": self.name}
-        cookiecutter(template, no_input=True, extra_context=context)
+        cookiecutter(template, extra_context={"repo_name": self.name})
+
+    def _make_readme(self):
+        template = get_template("readme.rst")
+        path = os.path.join(USER_PATH, self.name, "README.rst")
+        context = {"name": self.name, "collections": self._collections}
+        login_help =  self._get_login_help()
+        if login_help:
+            context['login'] = login_help
+
+        with open(path, 'w') as fobj:
+            fobj.write(template.render(context))
+
+    def _get_login_help(self):
+        try:
+            auth_classes = settings.REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES']
+        except KeyError:
+            return None
+
+        if 'rest_framework.authentication.BasicAuthentication' in auth_classes:
+            return 'username="admin", password="password"'
+        elif 'rest_framework.authentication.TokenAuthentication' in auth_classes:
+            return 'token="myoauthtoken"'
 
 
 class Resource(object):
@@ -68,6 +93,7 @@ class Resource(object):
     def __init__(self, router_entry, sdk_path):
         self.context = self._make_context(router_entry)
         self._sdk_path = sdk_path
+        self.collection = self.context['route_name']
 
     def make(self):
         self._make_skeleton()
