@@ -17,6 +17,7 @@ Automatically generate Python client SDK skeleton using your existing Django Res
 
 Install using `pip`...
 
+(Note: This does not work... yet)
 ```bash
 $ pip install drf-client-generator
 ```
@@ -73,7 +74,7 @@ $ pip install -r requirements.txt
 Run with runtests.
 
 ```bash
-$ ./runtests.py
+$ py.test
 ```
 
 You can also use the excellent [tox](http://tox.readthedocs.org/en/latest/) testing tool to run the tests against all supported versions of Python and Django. Install tox globally, and then simply run:
